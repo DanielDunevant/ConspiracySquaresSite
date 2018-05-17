@@ -7,7 +7,7 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import java.lang.Integer;
 
 import javax.servlet.http.HttpServlet;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.googlecode.objectify.ObjectifyService;
+import static com.googlecode.objectify.ObjectifyService.ofy;
 
 public class Servlet_ListServers extends HttpServlet {
 
@@ -23,7 +24,7 @@ public class Servlet_ListServers extends HttpServlet {
 	{
 		resp.addHeader("Access-Control-Allow-Origin", "*");
 
-		Query<GameServer> ServerList = ofy().load().type(GameServer.class);
+		List<GameServer> ServerList = ofy().load().type(GameServer.class).list();
 		for (GameServer SVR: ServerList)
 		{
 			System.out.println("+");

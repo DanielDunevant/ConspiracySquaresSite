@@ -41,53 +41,53 @@ public class Servlet_GetServer extends HttpServlet {
 				if (GetServer.PlayerCount <= 0) ObjectifyService.ofy().delete().entity(GetServer).now();
 			}
 			
-			long lID = 0;
+			int nID = 0;
 			if (ServerJoined.equals("TRUE"))
 			{
-				lID = GetServer.Player_Flags.size();
+				nID = GetServer.Player_Flags.size();
 				
 				resp.getWriter().print("ID=");
-				resp.getWriter().print(Long.toString(lID));
+				resp.getWriter().print(Long.toString(nID));
 				resp.getWriter().print("+");
 				
 				GetServer.PlayerCount++;
 				
-				GetServer.Player_X.add(0);
-				GetServer.Player_Y.add(0);
+				GetServer.Player_X.add(0.0f);
+				GetServer.Player_Y.add(0.0f);
 				GetServer.Player_Flags.add(0);
 			}
-			else lID = Long.parseLong(req.getParameter("ID"));
+			else nID = Integer.parseInt(req.getParameter("ID"));
 			
 			float fXPos = Float.parseFloat(req.getParameter("X"));
 			float fYPos = Float.parseFloat(req.getParameter("Y"));
 			int nFlags = Integer.parseInt(req.getParameter("FLAGS"));
 			
-			GetServer.Player_X.set(lID, fXPos);
-			GetServer.Player_Y.set(lID, fYPos);
-			GetServer.Player_Flags.set(lID, nFlags);
+			GetServer.Player_X.set(nID, fXPos);
+			GetServer.Player_Y.set(nID, fYPos);
+			GetServer.Player_Flags.set(nID, nFlags);
 
-			resp.getWriter().print(Integer.toString("+");
+			resp.getWriter().print("+");
 			for (Float XPos : GetServer.Player_X)
 			{
 				resp.getWriter().print("&");
 				resp.getWriter().print(Float.toString(XPos));
 			}
 			
-			resp.getWriter().print(Integer.toString("+");
+			resp.getWriter().print("+");
 			for (Float YPos : GetServer.Player_Y)
 			{
 				resp.getWriter().print("&");
 				resp.getWriter().print(Float.toString(YPos));
 			}
 			
-			resp.getWriter().print(Integer.toString("+");
-			for (Integer nFlags : GetServer.Player_Flags)
+			resp.getWriter().print("+");
+			for (Integer nFlag : GetServer.Player_Flags)
 			{
 				resp.getWriter().print("&");
-				resp.getWriter().print(Integer.toString(nFlags));
+				resp.getWriter().print(Integer.toString(nFlag));
 			}
 			
-			resp.getWriter().print(Integer.toString(";");
+			resp.getWriter().print(";");
 			
 			ObjectifyService.ofy().save().entity(GetServer).now();
 		}
