@@ -30,7 +30,7 @@ public class Servlet_GetServer extends HttpServlet {
 		//TODO: Add asymmetric encryption
 
 		String ServerName = req.getParameter("ServerName");
-		GameServer GetServer = ObjectifyService.ofy().load().type(GameServer.class).filter("ServerName", ServerName).first().now();
+		GameServer GetServer = ObjectifyService.ofy().load().type(GameServer.class).id(ServerName).now();
 		
 		if (GetServer != null)
 		{
