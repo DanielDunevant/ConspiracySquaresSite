@@ -6,6 +6,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 
+import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.lang.Integer;
@@ -33,6 +34,8 @@ public class Servlet_GetServer extends HttpServlet {
 		
 		if (GetServer != null)
 		{
+			PrintWriter write = resp.getWriter();
+			
 			String ServerJoined = req.getParameter("ServerJoined");
 			
 			if (ServerJoined.equals("LEFT"))
@@ -46,9 +49,9 @@ public class Servlet_GetServer extends HttpServlet {
 			{
 				nID = GetServer.Player_Flags.size();
 				
-				resp.getWriter().print("ID=");
-				resp.getWriter().print(Long.toString(nID));
-				resp.getWriter().print("+");
+				write.print("ID=");
+				write.print(Long.toString(nID));
+				write.print("+");
 				
 				GetServer.PlayerCount++;
 				
@@ -66,28 +69,28 @@ public class Servlet_GetServer extends HttpServlet {
 			GetServer.Player_Y.set(nID, fYPos);
 			GetServer.Player_Flags.set(nID, nFlags);
 
-			resp.getWriter().print("+");
+			write.print("+");
 			for (Float XPos : GetServer.Player_X)
 			{
-				resp.getWriter().print("&");
-				resp.getWriter().print(Float.toString(XPos));
+				write.print("&");
+				write.print(Float.toString(XPos));
 			}
 			
-			resp.getWriter().print("+");
+			write.print("+");
 			for (Float YPos : GetServer.Player_Y)
 			{
-				resp.getWriter().print("&");
-				resp.getWriter().print(Float.toString(YPos));
+				write.print("&");
+				write.print(Float.toString(YPos));
 			}
 			
-			resp.getWriter().print("+");
+			write.print("+");
 			for (Integer nFlag : GetServer.Player_Flags)
 			{
-				resp.getWriter().print("&");
-				resp.getWriter().print(Integer.toString(nFlag));
+				write.print("&");
+				write.print(Integer.toString(nFlag));
 			}
 			
-			resp.getWriter().print(";");
+			write.print(";");
 			
 			ObjectifyService.ofy().save().entity(GetServer).now();
 		}

@@ -21,5 +21,6 @@ public class GameServer {
 	public ArrayList<Float> Player_Y = new ArrayList<>();
 	public ArrayList<Integer> Player_Flags = new ArrayList<>();
 
+	public GameServer() {}
 	public GameServer(String strName) {ServerName = strName;}
 }
