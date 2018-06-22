@@ -16,23 +16,23 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>Servlet_GetServer</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_GetServer</servlet-class>
+    <servlet-name>Servlet_JoinPrivateServer</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_JoinPrivateServer</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet_GetServer</servlet-name>
-    <url-pattern>/Servlet_GetServer</url-pattern>
+    <servlet-name>Servlet_JoinPrivateServer</servlet-name>
+    <url-pattern>/Servlet_JoinPrivateServer</url-pattern>
   </servlet-mapping>
-  
+
   <servlet>
-    <servlet-name>Servlet_EndServer</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_EndServer</servlet-class>
+    <servlet-name>Servlet_GetServerInfo</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_GetServerInfo</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet_EndServer</servlet-name>
-    <url-pattern>/Servlet_EndServer</url-pattern>
+    <servlet-name>Servlet_GetServerInfo</servlet-name>
+    <url-pattern>/Servlet_GetServerInfo</url-pattern>
   </servlet-mapping>
-  
+
   <servlet>
     <servlet-name>Servlet_ListServers</servlet-name>
     <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_ListServers</servlet-class>

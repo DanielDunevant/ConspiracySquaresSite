@@ -32,6 +32,9 @@ public class Servlet_ListServers extends HttpServlet {
 			write.print(SVR.ServerName);
 			write.print("&");
 			write.print(Integer.toString(SVR.PlayerCount));
+			write.print("&");
+			if (SVR.ServerPassword == null || SVR.ServerPassword.isEmpty() || SVR.ServerPassword.equals("")) write.print("false");
+			else write.print("true");
 		}
 		write.print(";");
 	}

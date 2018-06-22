@@ -1,6 +1,6 @@
 com\novaytechnologies\conspiracysquares\Servlet_ListServers.class
 com\novaytechnologies\conspiracysquares\OfyHelper.class
+com\novaytechnologies\conspiracysquares\Servlet_JoinPrivateServer.class
 com\novaytechnologies\conspiracysquares\Servlet_CreateServer.class
-com\novaytechnologies\conspiracysquares\Servlet_GetServer.class
-com\novaytechnologies\conspiracysquares\Servlet_EndServer.class
+com\novaytechnologies\conspiracysquares\Servlet_GetServerInfo.class
 com\novaytechnologies\conspiracysquares\GameServer.class
