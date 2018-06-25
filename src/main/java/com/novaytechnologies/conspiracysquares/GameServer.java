@@ -8,7 +8,7 @@ import java.lang.Integer;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashSet;
-import java.util.HashMAp;
+import java.util.HashMap;
 
 import com.googlecode.objectify.ObjectifyService;
 
@@ -29,9 +29,9 @@ public class GameServer {
 		ServerPassword = strPass;
 	}
 	
-	public NotifyAll()
+	public void NotifyAll()
 	{
-		for(Boolean bUpdate : Player_Update)
+		for(Boolean bUpdate : Player_Update.values())
 		{
 			bUpdate = true;
 		}

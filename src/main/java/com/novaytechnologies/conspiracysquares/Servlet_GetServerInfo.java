@@ -42,8 +42,8 @@ public class Servlet_GetServerInfo extends HttpServlet
 
 			if (ServerJoined.equals("LEFT"))
 			{
-				GetServer.Player_IPs.erase(PlayerIP);
-				GetServer.Player_Update.erase(PlayerIP);
+				GetServer.Player_IPs.remove(PlayerIP);
+				GetServer.Player_Update.remove(PlayerIP);
 				
 				if (GetServer.Player_IPs.size() == 0) ObjectifyService.ofy().delete().entity(GetServer).now();
 				else
