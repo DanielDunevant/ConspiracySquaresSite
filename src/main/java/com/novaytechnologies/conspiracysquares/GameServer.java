@@ -5,9 +5,10 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
 import java.lang.Integer;
-import java.lang.Float;
+import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.HashMAp;
 
 import com.googlecode.objectify.ObjectifyService;
 
@@ -15,23 +16,24 @@ import com.googlecode.objectify.ObjectifyService;
 public class GameServer {
 	@Id public String ServerName;
 	public String ServerPassword;
-	public Integer PlayerCount = 0;
+
+	public HashSet<String> Player_IPs = new HashSet<>();
+	public HashMap<String, Boolean> Player_Update = new HashMap<>();
 	
-	public ArrayList<Boolean> Player_Updated = new ArrayList<>();
-	
-	public Integer PlayerIDs = 0;
-	public Float CircleRadius = 32768f;
-	
-	public ArrayList<Float> Player_X = new ArrayList<>();
-	public ArrayList<Float> Player_Y = new ArrayList<>();
-	public ArrayList<Integer> Player_Flags = new ArrayList<>();
-	public ArrayList<Integer> Player_Colors = new ArrayList<>();
-	public ArrayList<String> Player_Names = new ArrayList<>();
+	public Integer NextID = 0;
 
 	public GameServer() {}
 	public GameServer(String strName, String strPass)
 	{
 		ServerName = strName;
 		ServerPassword = strPass;
+	}
+	
+	public NotifyAll()
+	{
+		for(Boolean bUpdate : Player_Update)
+		{
+			bUpdate = true;
+		}
 	}
 }

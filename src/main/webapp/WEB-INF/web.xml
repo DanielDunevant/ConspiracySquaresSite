@@ -32,6 +32,15 @@
     <servlet-name>Servlet_GetServerInfo</servlet-name>
     <url-pattern>/Servlet_GetServerInfo</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Servlet_CheckJoined</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_CheckJoined</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet_CheckJoined</servlet-name>
+    <url-pattern>/Servlet_CheckJoined</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>Servlet_ListServers</servlet-name>

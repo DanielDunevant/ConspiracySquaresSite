@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.List;
 import java.lang.Integer;
+import java.lang.Boolean;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.googlecode.objectify.ObjectifyService;
 
-public class Servlet_ListServers extends HttpServlet {
+public class Servlet_CheckJoined extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
@@ -27,18 +28,17 @@ public class Servlet_ListServers extends HttpServlet {
 		String ReqPass = req.getParameter("ReqPass");
 		//TODO: Add asymmetric encryption
 
+		String ServerName = req.getParameter("ServerName");
+		String ServerPass = req.getParameter("ServerPassword");
+		String PlayerIP = req.getParameter("IP");
+
+		GameServer GetServer = ObjectifyService.ofy().load().type(GameServer.class).id(ServerName).now();
+		
 		PrintWriter write = resp.getWriter();
-		List<GameServer> ServerList = ObjectifyService.ofy().load().type(GameServer.class).list();
-		for (GameServer SVR: ServerList)
+		if (GetServer.ServerPassword.equals(ServerPass))
 		{
-			write.print("+");
-			write.print(SVR.ServerName);
-			write.print("&");
-			write.print(Integer.toString(SVR.PlayerCount));
-			write.print("&");
-			if (SVR.ServerPassword == null || SVR.ServerPassword.isEmpty() || SVR.ServerPassword.equals("")) write.print("false");
-			else write.print("true");
+			write.print(Boolean.toString(GetServer.Player_Update.get(PlayerIP)));
 		}
-		write.print(";");
+		else write.print("PASSWORD_WRONG");
 	}
 }
