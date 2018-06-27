@@ -8,6 +8,7 @@ import com.google.appengine.api.datastore.KeyFactory;
 
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.util.Map;
 import java.util.ArrayList;
 import java.lang.Integer;
 import java.lang.Long;
@@ -48,7 +49,10 @@ public class Servlet_GetServerInfo extends HttpServlet
 				if (GetServer.Player_IPs.size() == 0) ObjectifyService.ofy().delete().entity(GetServer).now();
 				else
 				{
-					GetServer.NotifyAll();
+					for (Map.Entry<String, Boolean> entry : GetServer.Player_Update.entrySet())
+					{
+						GetServer.Player_Update.put(entry.getKey(), true);
+					}
 					ObjectifyService.ofy().save().entity(GetServer).now();
 				}
 			}
@@ -57,8 +61,11 @@ public class Servlet_GetServerInfo extends HttpServlet
 				GetServer.Player_IPs.add(PlayerIP);
 				GetServer.Player_Update.put(PlayerIP, true);
 
-				GetServer.NotifyAll();
-				
+				for (Map.Entry<String, Boolean> entry : GetServer.Player_Update.entrySet())
+				{
+					GetServer.Player_Update.put(entry.getKey(), true);
+				}
+
 				int nID = GetServer.NextID++;
 				write.print("ID=");
 				write.print(Integer.toString(nID));

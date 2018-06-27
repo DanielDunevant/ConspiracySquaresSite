@@ -28,12 +28,4 @@ public class GameServer {
 		ServerName = strName;
 		ServerPassword = strPass;
 	}
-	
-	public void NotifyAll()
-	{
-		for(Boolean bUpdate : Player_Update.values())
-		{
-			bUpdate = true;
-		}
-	}
 }
