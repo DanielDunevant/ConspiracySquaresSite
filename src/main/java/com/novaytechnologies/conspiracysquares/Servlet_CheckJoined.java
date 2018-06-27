@@ -37,7 +37,7 @@ public class Servlet_CheckJoined extends HttpServlet {
 		PrintWriter write = resp.getWriter();
 		if (GetServer.ServerPassword.equals(ServerPass))
 		{
-			write.print(Boolean.toString(GetServer.Player_Update.get(PlayerIP)));
+			write.print(GetServer.Player_Update.get(PlayerIP));
 		}
 		else write.print("PASSWORD_WRONG");
 	}

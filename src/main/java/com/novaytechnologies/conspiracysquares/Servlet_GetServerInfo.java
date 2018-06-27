@@ -50,9 +50,9 @@ public class Servlet_GetServerInfo extends HttpServlet
 				if (GetServer.Player_IPs.size() == 0) ObjectifyService.ofy().delete().entity(GetServer).now();
 				else
 				{
-					for (Map.Entry<String, Boolean> entry : GetServer.Player_Update.entrySet())
+					for (Map.Entry<String, String> entry : GetServer.Player_Update.entrySet())
 					{
-						GetServer.Player_Update.put(entry.getKey(), true);
+						GetServer.Player_Update.put(entry.getKey(), "true");
 					}
 					ObjectifyService.ofy().save().entity(GetServer).now();
 				}
@@ -60,12 +60,12 @@ public class Servlet_GetServerInfo extends HttpServlet
 			else if (ServerJoined.equals("TRUE"))
 			{
 				GetServer.Player_IPs.add(PlayerIP);
-				GetServer.Player_Ports.put(PlayerIP, -1);
-				GetServer.Player_Update.put(PlayerIP, true);
+				GetServer.Player_Ports.put(PlayerIP, "-1");
+				GetServer.Player_Update.put(PlayerIP, "true");
 
-				for (Map.Entry<String, Boolean> entry : GetServer.Player_Update.entrySet())
+				for (Map.Entry<String, String> entry : GetServer.Player_Update.entrySet())
 				{
-					GetServer.Player_Update.put(entry.getKey(), true);
+					GetServer.Player_Update.put(entry.getKey(), "true");
 				}
 
 				int nID = GetServer.NextID++;
@@ -77,24 +77,24 @@ public class Servlet_GetServerInfo extends HttpServlet
 			else if (ServerJoined.equals("PORT"))
 			{
 				String PlayerPort = req.getParameter("PORT");
-				GetServer.Player_Ports.put(PlayerIP, Integer.parseInt(PlayerPort));
+				GetServer.Player_Ports.put(PlayerIP, PlayerPort);
 
-				for (Map.Entry<String, Boolean> entry : GetServer.Player_Update.entrySet())
+				for (Map.Entry<String, String> entry : GetServer.Player_Update.entrySet())
 				{
-					GetServer.Player_Update.put(entry.getKey(), true);
+					GetServer.Player_Update.put(entry.getKey(), "true");
 				}
 
 				ObjectifyService.ofy().save().entity(GetServer).now();
 			}
 			else
 			{
-				GetServer.Player_Update.put(PlayerIP, false);
+				GetServer.Player_Update.put(PlayerIP, "false");
 				for(String strIP : GetServer.Player_IPs)
 				{
 					write.print("+");
 					write.print(strIP);
 					write.print("+");
-					write.print(Integer.toString(GetServer.Player_Ports.get(strIP)));
+					write.print(GetServer.Player_Ports.get(strIP));
 				}
 				ObjectifyService.ofy().save().entity(GetServer).now();
 			}

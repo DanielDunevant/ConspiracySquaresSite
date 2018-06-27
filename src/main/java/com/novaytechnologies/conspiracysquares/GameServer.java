@@ -18,8 +18,8 @@ public class GameServer {
 	public String ServerPassword;
 
 	public HashSet<String> Player_IPs = new HashSet<>();
-	public HashMap<String, Integer> Player_Ports = new HashMap<>();
-	public HashMap<String, Boolean> Player_Update = new HashMap<>();
+	public HashMap<String, String> Player_Ports = new HashMap<>();
+	public HashMap<String, String> Player_Update = new HashMap<>();
 	
 	public Integer NextID = 0;
 
