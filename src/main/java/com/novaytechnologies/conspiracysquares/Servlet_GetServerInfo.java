@@ -64,7 +64,11 @@ public class Servlet_GetServerInfo extends HttpServlet
 				GetServer.Player_Update.put(PlayerIP, "true");
 				
 				Integer nID = GetServer.Player_IDs.get(PlayerIP);
-				if (nID == null) GetServer.Player_IDs.put(PlayerIP, GetServer.Player_IDs.size());
+				if (nID == null)
+				{
+					nID = GetServer.Player_IDs.size();
+					GetServer.Player_IDs.put(PlayerIP, nID);
+				}
 
 				for (Map.Entry<String, String> entry : GetServer.Player_Update.entrySet())
 				{
