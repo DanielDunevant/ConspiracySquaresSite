@@ -62,13 +62,15 @@ public class Servlet_GetServerInfo extends HttpServlet
 				GetServer.Player_IPs.add(PlayerIP);
 				GetServer.Player_Ports.put(PlayerIP, "-1");
 				GetServer.Player_Update.put(PlayerIP, "true");
+				
+				Integer nID = GetServer.Player_IDs.get(PlayerIP);
+				if (nID == null) GetServer.Player_IDs.put(PlayerIP, GetServer.Player_IDs.size());
 
 				for (Map.Entry<String, String> entry : GetServer.Player_Update.entrySet())
 				{
 					GetServer.Player_Update.put(entry.getKey(), "true");
 				}
 
-				int nID = GetServer.NextID++;
 				write.print("ID=");
 				write.print(Integer.toString(nID));
 				
@@ -91,11 +93,12 @@ public class Servlet_GetServerInfo extends HttpServlet
 				GetServer.Player_Update.put(PlayerIP, "false");
 				for(String strIP : GetServer.Player_IPs)
 				{
-					write.print("+");
 					write.print(strIP);
 					write.print("+");
 					write.print(GetServer.Player_Ports.get(strIP));
+					write.print("+");
 				}
+				write.print("+");
 				ObjectifyService.ofy().save().entity(GetServer).now();
 			}
 		}

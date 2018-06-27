@@ -20,8 +20,7 @@ public class GameServer {
 	public HashSet<String> Player_IPs = new HashSet<>();
 	public HashMap<String, String> Player_Ports = new HashMap<>();
 	public HashMap<String, String> Player_Update = new HashMap<>();
-	
-	public Integer NextID = 0;
+	public HashMap<String, Integer> Player_IDs = new HashMap<>();
 
 	public GameServer() {}
 	public GameServer(String strName, String strPass)
