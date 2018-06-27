@@ -44,6 +44,7 @@ public class Servlet_GetServerInfo extends HttpServlet
 			if (ServerJoined.equals("LEFT"))
 			{
 				GetServer.Player_IPs.remove(PlayerIP);
+				GetServer.Player_Ports.remove(PlayerIP);
 				GetServer.Player_Update.remove(PlayerIP);
 				
 				if (GetServer.Player_IPs.size() == 0) ObjectifyService.ofy().delete().entity(GetServer).now();
@@ -59,6 +60,7 @@ public class Servlet_GetServerInfo extends HttpServlet
 			else if (ServerJoined.equals("TRUE"))
 			{
 				GetServer.Player_IPs.add(PlayerIP);
+				GetServer.Player_Ports.put(PlayerIP, -1);
 				GetServer.Player_Update.put(PlayerIP, true);
 
 				for (Map.Entry<String, Boolean> entry : GetServer.Player_Update.entrySet())
@@ -72,6 +74,18 @@ public class Servlet_GetServerInfo extends HttpServlet
 				
 				ObjectifyService.ofy().save().entity(GetServer).now();
 			}
+			else if (ServerJoined.equals("PORT"))
+			{
+				String PlayerPort = req.getParameter("PORT");
+				GetServer.Player_Ports.put(PlayerIP, Integer.parseInt(PlayerPort));
+
+				for (Map.Entry<String, Boolean> entry : GetServer.Player_Update.entrySet())
+				{
+					GetServer.Player_Update.put(entry.getKey(), true);
+				}
+
+				ObjectifyService.ofy().save().entity(GetServer).now();
+			}
 			else
 			{
 				GetServer.Player_Update.put(PlayerIP, false);
@@ -79,6 +93,8 @@ public class Servlet_GetServerInfo extends HttpServlet
 				{
 					write.print("+");
 					write.print(strIP);
+					write.print("+");
+					write.print(Integer.toString(GetServer.Player_Ports.get(strIP)));
 				}
 				ObjectifyService.ofy().save().entity(GetServer).now();
 			}
