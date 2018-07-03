@@ -16,21 +16,57 @@
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>Servlet_JoinPrivateServer</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_JoinPrivateServer</servlet-class>
+    <servlet-name>Servlet_CheckPassword</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_CheckPassword</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet_JoinPrivateServer</servlet-name>
-    <url-pattern>/Servlet_JoinPrivateServer</url-pattern>
+    <servlet-name>Servlet_CheckPassword</servlet-name>
+    <url-pattern>/Servlet_CheckPassword</url-pattern>
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>Servlet_GetServerInfo</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_GetServerInfo</servlet-class>
+    <servlet-name>Servlet_ServerJoin</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_ServerJoin</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet_GetServerInfo</servlet-name>
-    <url-pattern>/Servlet_GetServerInfo</url-pattern>
+    <servlet-name>Servlet_ServerJoin</servlet-name>
+    <url-pattern>/Servlet_ServerJoin</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Servlet_ServerLeave</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_ServerLeave</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet_ServerLeave</servlet-name>
+    <url-pattern>/Servlet_ServerLeave</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Servlet_ServerListIPs</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_ServerListIPs</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet_ServerListIPs</servlet-name>
+    <url-pattern>/Servlet_ServerListIPs</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>Servlet_ServerPortUpdate</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_ServerPortUpdate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet_ServerPortUpdate</servlet-name>
+    <url-pattern>/Servlet_ServerPortUpdate</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Servlet_ServerRound</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_ServerRound</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet_ServerRound</servlet-name>
+    <url-pattern>/Servlet_ServerRound</url-pattern>
   </servlet-mapping>
   
   <servlet>

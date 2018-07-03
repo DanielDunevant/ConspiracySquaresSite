@@ -1,7 +1,11 @@
 com\novaytechnologies\conspiracysquares\Servlet_ListServers.class
 com\novaytechnologies\conspiracysquares\OfyHelper.class
-com\novaytechnologies\conspiracysquares\Servlet_JoinPrivateServer.class
-com\novaytechnologies\conspiracysquares\Servlet_GetServerInfo.class
+com\novaytechnologies\conspiracysquares\Servlet_ServerRound.class
 com\novaytechnologies\conspiracysquares\GameServer.class
+com\novaytechnologies\conspiracysquares\Servlet_ServerPortUpdate.class
 com\novaytechnologies\conspiracysquares\Servlet_CheckJoined.class
 com\novaytechnologies\conspiracysquares\Servlet_CreateServer.class
+com\novaytechnologies\conspiracysquares\Servlet_CheckPassword.class
+com\novaytechnologies\conspiracysquares\Servlet_ServerJoin.class
+com\novaytechnologies\conspiracysquares\Servlet_ServerListIPs.class
+com\novaytechnologies\conspiracysquares\Servlet_ServerLeave.class

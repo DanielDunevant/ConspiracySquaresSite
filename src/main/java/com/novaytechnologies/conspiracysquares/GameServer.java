@@ -16,6 +16,8 @@ import com.googlecode.objectify.ObjectifyService;
 public class GameServer {
 	@Id public String ServerName;
 	public String ServerPassword;
+	
+	Boolean bRoundStarted = false;
 
 	public HashSet<String> Player_IPs = new HashSet<>();
 	public HashMap<String, String> Player_Ports = new HashMap<>();
