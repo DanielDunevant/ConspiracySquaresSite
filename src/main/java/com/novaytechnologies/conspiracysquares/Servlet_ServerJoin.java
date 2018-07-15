@@ -32,11 +32,21 @@ public class Servlet_ServerJoin extends HttpServlet
 
 		String ServerName = req.getParameter("ServerName");
 		String ServerPass = req.getParameter("ServerPassword");
-		String PlayerIP = req.getParameter("IP");
+		
+		String PlayerIP = "";
+        if (req != null) {
+            PlayerIP = req.getHeader("X-FORWARDED-FOR");
+            if (PlayerIP == null || "".equals(PlayerIP) || PlayerIP.contains(",") ) {
+				PlayerIP = req.getHeader("CF-CONNECTING-IP");
+				if (PlayerIP == null || "".equals(PlayerIP) || PlayerIP.contains(",")) {
+					PlayerIP = req.getRemoteAddr();
+				}
+            }
+        }
 		
 		GameServer GetServer = ObjectifyService.ofy().load().type(GameServer.class).id(ServerName).now();
 		
-		if (GetServer != null && GetServer.ServerPassword.equals(ServerPass))
+		if (PlayerIP.equals("") && GetServer != null && GetServer.ServerPassword.equals(ServerPass))
 		{
 			PrintWriter write = resp.getWriter();
 
@@ -58,10 +68,14 @@ public class Servlet_ServerJoin extends HttpServlet
 
 			write.print("ID=");
 			write.print(Integer.toString(nID));
+			
 			write.print("+ROUND=");
 			if (GetServer.bRoundStarted) write.print("true");
 			else write.print("false");
 			
+			write.print("+IP=");
+			write.print(PlayerIP);
+
 			ObjectifyService.ofy().save().entity(GetServer).now();
 		}
 	}
