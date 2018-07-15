@@ -36,11 +36,9 @@ public class Servlet_ServerJoin extends HttpServlet
 		String PlayerIP = "";
         if (req != null) {
             PlayerIP = req.getHeader("X-FORWARDED-FOR");
-            if (PlayerIP == null || "".equals(PlayerIP) || PlayerIP.contains(",") ) {
-				PlayerIP = req.getHeader("CF-CONNECTING-IP");
-				if (PlayerIP == null || "".equals(PlayerIP) || PlayerIP.contains(",")) {
-					PlayerIP = req.getRemoteAddr();
-				}
+			if (PlayerIP != null) PlayerIP = (PlayerIP.contains(",")) ? PlayerIP.split(",")[0] : PlayerIP;
+            if (PlayerIP == null || "".equals(PlayerIP)) {
+				PlayerIP = req.getRemoteAddr();
             }
         }
 		
