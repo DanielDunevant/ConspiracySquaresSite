@@ -1,6 +1,11 @@
+C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\Servlet_CheckPassword.java
 C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\GameServer.java
+C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\Servlet_CheckJoined.java
 C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\Servlet_ListServers.java
+C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\Servlet_ServerPortUpdate.java
 C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\OfyHelper.java
+C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\Servlet_ServerListIPs.java
 C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\Servlet_CreateServer.java
-C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\Servlet_GetServerInfo.java
-C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\Servlet_JoinPrivateServer.java
+C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\Servlet_ServerLeave.java
+C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\Servlet_ServerRound.java
+C:\Users\Jesse\Documents\Storage\Novay_Technologies\ConspiracySquares\ConspiracySquares-Site\src\main\java\com\novaytechnologies\conspiracysquares\Servlet_ServerJoin.java

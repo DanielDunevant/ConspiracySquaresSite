@@ -46,7 +46,7 @@ public class Servlet_ServerJoin extends HttpServlet
 		
 		GameServer GetServer = ObjectifyService.ofy().load().type(GameServer.class).id(ServerName).now();
 		
-		if (PlayerIP.equals("") && GetServer != null && GetServer.ServerPassword.equals(ServerPass))
+		if (!PlayerIP.equals("") && GetServer != null && GetServer.ServerPassword.equals(ServerPass))
 		{
 			PrintWriter write = resp.getWriter();
 

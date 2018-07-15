@@ -35,7 +35,7 @@ public class Servlet_CheckJoined extends HttpServlet {
 		GameServer GetServer = ObjectifyService.ofy().load().type(GameServer.class).id(ServerName).now();
 		
 		PrintWriter write = resp.getWriter();
-		if (GetServer.ServerPassword.equals(ServerPass))
+		if (GetServer != null && GetServer.ServerPassword.equals(ServerPass))
 		{
 			write.print(GetServer.Player_Update.get(PlayerIP));
 		}
