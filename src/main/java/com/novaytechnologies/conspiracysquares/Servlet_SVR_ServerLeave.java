@@ -44,7 +44,8 @@ public class Servlet_SVR_ServerLeave extends HttpServlet
 			if (GetServer.nPlayers <= 0)
 			{
 				List<GameServer_Player> PlayerList = ObjectifyService.ofy().load().type(GameServer_Player.class).ancestor(GetServer).list();
-				ObjectifyService.ofy().delete().entities(GetServer, PlayerList).now();
+				ObjectifyService.ofy().delete().entities(PlayerList).now();
+				ObjectifyService.ofy().delete().entity(GetServer).now();
 			}
 			else
 			{
@@ -52,7 +53,8 @@ public class Servlet_SVR_ServerLeave extends HttpServlet
 				Random randColor = new Random(System.currentTimeMillis());
 				int nColor = (255 << 24) | (randColor.nextInt(255) << 16) | (randColor.nextInt(255) << 8) | randColor.nextInt(255);
 				PlayerLeft.Reset(false, nColor);
-				ObjectifyService.ofy().save().entities(PlayerLeft, GetServer).now();
+				ObjectifyService.ofy().save().entity(PlayerLeft).now();
+				ObjectifyService.ofy().save().entity(GetServer).now();
 			}
 		}
 	}
