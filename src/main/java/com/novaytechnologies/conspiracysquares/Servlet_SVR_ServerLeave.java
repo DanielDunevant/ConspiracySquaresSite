@@ -10,9 +10,11 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.List;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
+import java.util.Random;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,11 +41,17 @@ public class Servlet_SVR_ServerLeave extends HttpServlet
 		{
 			GetServer.nPlayers--;
 
-			if (GetServer.nPlayers <= 0) ObjectifyService.ofy().delete().entity(GetServer).now();
+			if (GetServer.nPlayers <= 0)
+			{
+				List<GameServer_Player> PlayerList = ObjectifyService.ofy().load().type(GameServer_Player.class).ancestor(GetServer).list();
+				ObjectifyService.ofy().delete().entities(GetServer, PlayerList).now();
+			}
 			else
 			{
 				GameServer_Player PlayerLeft = ObjectifyService.ofy().load().type(GameServer_Player.class).parent(GetServer).id(lID).now();
-				PlayerLeft.Reset(false);
+				Random randColor = new Random(System.currentTimeMillis());
+				int nColor = (255 << 24) | (randColor.nextInt(255) << 16) | (randColor.nextInt(255) << 8) | randColor.nextInt(255);
+				PlayerLeft.Reset(false, nColor);
 				ObjectifyService.ofy().save().entities(PlayerLeft, GetServer).now();
 			}
 		}

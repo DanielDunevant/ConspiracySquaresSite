@@ -31,7 +31,8 @@ public class Cron_RemoveEmptyServers extends HttpServlet
 		List<GameServer> ServerList = ObjectifyService.ofy().load().type(GameServer.class).filter("nPlayers", 0).list();
 		for (GameServer SVR: ServerList)
 		{
-			ObjectifyService.ofy().delete().entity(SVR).now();
+			List<GameServer_Player> PlayerList = ObjectifyService.ofy().load().type(GameServer_Player.class).ancestor(SVR).list();
+			ObjectifyService.ofy().delete().entities(SVR, PlayerList).now();
 		}
 	}
 }

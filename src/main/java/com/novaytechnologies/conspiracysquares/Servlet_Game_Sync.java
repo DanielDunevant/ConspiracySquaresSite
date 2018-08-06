@@ -42,21 +42,21 @@ public class Servlet_Game_Sync extends HttpServlet
 			List<GameServer_Player> PlayerList = ObjectifyService.ofy().load().type(GameServer_Player.class).ancestor(GetServer).list();
 			for (GameServer_Player Player: PlayerList)
 			{
-				write.print("+");
-				write.print(Player.PlayerID);
-				write.print("-");
-				write.print(Player.fPosX);
-				write.print("-");
-				write.print(Player.fPosY);
-				write.print("-");
-				write.print(Player.fSpeedX);
-				write.print("-");
-				write.print(Player.fSpeedY);
-				write.print("-");
-				write.print(Player.nFlags);
-				write.print("-");
-				write.print(Player.nColor);
-				write.print("-");
+				write.print(":");
+				write.print(Long.toString(Player.PlayerID));
+				write.print("&");
+				write.print(Float.toString(Player.fPosX));
+				write.print("&");
+				write.print(Float.toString(Player.fPosY));
+				write.print("&");
+				write.print(Float.toString(Player.fSpeedX));
+				write.print("&");
+				write.print(Float.toString(Player.fSpeedY));
+				write.print("&");
+				write.print(Integer.toString(Player.nFlags));
+				write.print("&");
+				write.print(Integer.toString(Player.nColor));
+				write.print("&");
 				write.print(Player.strName);
 			}
 			write.print(";");

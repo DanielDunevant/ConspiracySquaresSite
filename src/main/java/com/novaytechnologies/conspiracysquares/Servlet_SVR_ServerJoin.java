@@ -56,7 +56,9 @@ public class Servlet_SVR_ServerJoin extends HttpServlet
 				write.print("+COLOR=");
 				write.print(Integer.toString(PlayerJoin.nColor));
 
-				ObjectifyService.ofy().save().entity(PlayerJoin).now();
+				GetServer.nPlayers = (GetServer.nPlayers == -1) ? 1 : GetServer.nPlayers++;
+				
+				ObjectifyService.ofy().save().entities(PlayerJoin, GetServer).now();
 			}
 		}
 	}
