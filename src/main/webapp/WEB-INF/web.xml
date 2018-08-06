@@ -7,84 +7,66 @@
          version="3.1">
 		 
   <servlet>
-    <servlet-name>Servlet_CreateServer</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_CreateServer</servlet-class>
+    <servlet-name>Servlet_SVR_CreateServer</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_SVR_CreateServer</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet_CreateServer</servlet-name>
-    <url-pattern>/Servlet_CreateServer</url-pattern>
+    <servlet-name>Servlet_SVR_CreateServer</servlet-name>
+    <url-pattern>/Servlet_SVR_CreateServer</url-pattern>
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>Servlet_CheckPassword</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_CheckPassword</servlet-class>
+    <servlet-name>Servlet_SVR_CheckPassword</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_SVR_CheckPassword</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet_CheckPassword</servlet-name>
-    <url-pattern>/Servlet_CheckPassword</url-pattern>
+    <servlet-name>Servlet_SVR_CheckPassword</servlet-name>
+    <url-pattern>/Servlet_SVR_CheckPassword</url-pattern>
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>Servlet_ServerJoin</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_ServerJoin</servlet-class>
+    <servlet-name>Servlet_SVR_ServerJoin</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_SVR_ServerJoin</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet_ServerJoin</servlet-name>
-    <url-pattern>/Servlet_ServerJoin</url-pattern>
+    <servlet-name>Servlet_SVR_ServerJoin</servlet-name>
+    <url-pattern>/Servlet_SVR_ServerJoin</url-pattern>
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>Servlet_ServerLeave</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_ServerLeave</servlet-class>
+    <servlet-name>Servlet_SVR_ServerLeave</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_SVR_ServerLeave</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet_ServerLeave</servlet-name>
-    <url-pattern>/Servlet_ServerLeave</url-pattern>
+    <servlet-name>Servlet_SVR_ServerLeave</servlet-name>
+    <url-pattern>/Servlet_SVR_ServerLeave</url-pattern>
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>Servlet_ServerListIPs</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_ServerListIPs</servlet-class>
+    <servlet-name>Servlet_SVR_ListServers</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_SVR_ListServers</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet_ServerListIPs</servlet-name>
-    <url-pattern>/Servlet_ServerListIPs</url-pattern>
-  </servlet-mapping>
-
-  <servlet>
-    <servlet-name>Servlet_ServerPortUpdate</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_ServerPortUpdate</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Servlet_ServerPortUpdate</servlet-name>
-    <url-pattern>/Servlet_ServerPortUpdate</url-pattern>
+    <servlet-name>Servlet_SVR_ListServers</servlet-name>
+    <url-pattern>/Servlet_SVR_ListServers</url-pattern>
   </servlet-mapping>
   
   <servlet>
-    <servlet-name>Servlet_ServerRound</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_ServerRound</servlet-class>
+    <servlet-name>Servlet_Game_Sync</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_Game_Sync</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet_ServerRound</servlet-name>
-    <url-pattern>/Servlet_ServerRound</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>Servlet_CheckJoined</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_CheckJoined</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Servlet_CheckJoined</servlet-name>
-    <url-pattern>/Servlet_CheckJoined</url-pattern>
+    <servlet-name>Servlet_Game_Sync</servlet-name>
+    <url-pattern>/Servlet_Game_Sync</url-pattern>
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>Servlet_ListServers</servlet-name>
-    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_ListServers</servlet-class>
+    <servlet-name>Cron_RemoveEmptyServers</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Cron_RemoveEmptyServers</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet_ListServers</servlet-name>
-    <url-pattern>/Servlet_ListServers</url-pattern>
+    <servlet-name>Cron_RemoveEmptyServers</servlet-name>
+    <url-pattern>/Cron_RemoveEmptyServers</url-pattern>
   </servlet-mapping>
 
   <welcome-file-list>
