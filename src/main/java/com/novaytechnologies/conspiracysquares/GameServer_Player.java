@@ -2,6 +2,7 @@ package com.novaytechnologies.conspiracysquares;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Parent;
 import com.googlecode.objectify.annotation.Index;
 import com.googlecode.objectify.Key;
 
@@ -20,13 +21,13 @@ public class GameServer_Player {
 	@Id public Long PlayerID;
 
 	public Boolean bActive = false;
-	public Long LastUpdate = 0;
+	public Long LastUpdate = 0L;
 	
-	public Long lMoveN = 0;
-	public Float fPosX = 0;
-	public Float fPosY = 0;
-	public Float fSpeedX = 0;
-	public Float fSpeedY = 0;
+	public Long lMoveN = 0L;
+	public Float fPosX = 0f;
+	public Float fPosY = 0f;
+	public Float fSpeedX = 0f;
+	public Float fSpeedY = 0f;
 	
 	public String strName = "";
 	public Integer nColor = 0;
@@ -43,11 +44,11 @@ public class GameServer_Player {
 		Random randColor = new Random(System.currentTimeMillis());
 		nColor = (255 & 0xff) << 24 | (randColor.nextInt(255) & 0xff) << 16 | (randColor.nextInt(255) & 0xff) << 8 | (randColor.nextInt(255) & 0xff);
 
-		lMoveN = 0;
-		fPosX = 0;
-		fPosY = 0;
-		fSpeedX = 0;
-		fSpeedY = 0;
+		lMoveN = 0L;
+		fPosX = 0f;
+		fPosY = 0f;
+		fSpeedX = 0f;
+		fSpeedY = 0f;
 
 		nFlags = (bActive) ? 1 : -1;
 	}

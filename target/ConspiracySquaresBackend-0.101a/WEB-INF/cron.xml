@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cronentries>
+  <cron>
+    <url>/Cron_RemoveEmptyServers</url>
+    <description>removes all empty servers</description>
+    <schedule>every 5 minutes</schedule>
+  </cron>
+</cronentries>

@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.googlecode.objectify.ObjectifyService;
 
-public class Servlet_Game_Sync extends HttpServlet
+public class Servlet_Game_Move extends HttpServlet
 {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException
@@ -48,8 +48,8 @@ public class Servlet_Game_Sync extends HttpServlet
 			{
 				GetPlayer.fPosX = fX;
 				GetPlayer.fPosY = fY;
-				GetPlayer.fDirX = fDX;
-				GetPlayer.fDirY = fDY;
+				GetPlayer.fSpeedX = fDX;
+				GetPlayer.fSpeedY = fDY;
 				GetPlayer.lMoveN = lMoveNum;
 				ObjectifyService.ofy().save().entity(GetPlayer).now();
 			}

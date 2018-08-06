@@ -39,7 +39,7 @@ public class Servlet_SVR_ServerJoin extends HttpServlet
 		{
 			PrintWriter write = resp.getWriter();
 
-			GameServer_Player PlayerJoin = ObjectifyService.ofy().load().type(GameServer_Player.class).parent(GetServer).filter("bActive", false).first().now();
+			GameServer_Player PlayerJoin = ObjectifyService.ofy().load().type(GameServer_Player.class).ancestor(GetServer).filter("bActive", false).first().now();
 			if (PlayerJoin != null)
 			{
 				PlayerJoin.bActive = true;

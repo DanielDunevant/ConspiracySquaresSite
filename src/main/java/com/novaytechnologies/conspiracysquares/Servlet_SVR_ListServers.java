@@ -28,7 +28,7 @@ public class Servlet_SVR_ListServers extends HttpServlet {
 		//TODO: Add asymmetric encryption
 
 		PrintWriter write = resp.getWriter();
-		List<GameServer> ServerList = ObjectifyService.ofy().load().type(GameServer.class).list().now();
+		List<GameServer> ServerList = ObjectifyService.ofy().load().type(GameServer.class).list();
 		for (GameServer SVR: ServerList)
 		{
 			write.print("+");

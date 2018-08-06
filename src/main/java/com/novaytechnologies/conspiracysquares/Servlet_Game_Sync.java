@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.Map;
 import java.util.ArrayList;
+import java.util.List;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
@@ -38,7 +39,7 @@ public class Servlet_Game_Sync extends HttpServlet
 		{
 			PrintWriter write = resp.getWriter();
 			
-			List<GameServer_Player> PlayerList = ObjectifyService.ofy().load().type(GameServer_Player.class).parent(GetServer).list().now();
+			List<GameServer_Player> PlayerList = ObjectifyService.ofy().load().type(GameServer_Player.class).ancestor(GetServer).list();
 			for (GameServer_Player Player: PlayerList)
 			{
 				write.print("+");
@@ -48,9 +49,9 @@ public class Servlet_Game_Sync extends HttpServlet
 				write.print("-");
 				write.print(Player.fPosY);
 				write.print("-");
-				write.print(Player.fDirX);
+				write.print(Player.fSpeedX);
 				write.print("-");
-				write.print(Player.fDirY);
+				write.print(Player.fSpeedY);
 				write.print("-");
 				write.print(Player.nFlags);
 				write.print("-");

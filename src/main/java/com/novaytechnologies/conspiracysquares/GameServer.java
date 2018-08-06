@@ -8,6 +8,8 @@ import com.googlecode.objectify.Key;
 import java.lang.Integer;
 import java.lang.Boolean;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.HashSet;
 import java.util.HashMap;
 
@@ -22,17 +24,17 @@ public class GameServer {
 	
 	@Index public Integer nPlayers = -1;
 
-	public Long StartTime = 0;
-	public Long RoundStartTime = 0;
+	public Long StartTime = 0L;
+	public Long RoundStartTime = 0L;
 	public Boolean bRoundStarted = false;
 
 	public void Restart()
 	{
-		StartTime = 0;
-		RoundStartTime = 0;
+		StartTime = 0L;
+		RoundStartTime = 0L;
 		bRoundStarted = false;
 
-		List<GameServer_Player> PlayerList = ObjectifyService.ofy().load().type(GameServer_Player.class).parent(this).list().now();
+		List<GameServer_Player> PlayerList = ObjectifyService.ofy().load().type(GameServer_Player.class).ancestor(this).list();
 		for (GameServer_Player Player: PlayerList)
 		{
 			Player.Reset(true);
@@ -46,7 +48,7 @@ public class GameServer {
 		ServerName = strName;
 		ServerPassword = strPass;
 		
-		List<GameServer_Player> PlayerList;
+		ArrayList<GameServer_Player> PlayerList = new ArrayList<GameServer_Player>();
 		for (long lPlayerNum = 0; lPlayerNum < lPlayerMAX; lPlayerNum++)
 		{
 			GameServer_Player newPlayer = new GameServer_Player(ServerName, lPlayerNum);
