@@ -33,6 +33,8 @@ public class Servlet_Game_Sync extends HttpServlet
 
 		String ServerName = req.getParameter("ServerName");
 		String ServerPass = req.getParameter("ServerPassword");
+		
+		Long lID = Long.parseLong(req.getParameter("Self_ID"));
 
 		GameServer GetServer = ObjectifyService.ofy().load().type(GameServer.class).id(ServerName).now();
 		if (GetServer != null && GetServer.ServerPassword.equals(ServerPass))
@@ -42,22 +44,25 @@ public class Servlet_Game_Sync extends HttpServlet
 			List<GameServer_Player> PlayerList = ObjectifyService.ofy().load().type(GameServer_Player.class).ancestor(GetServer).list();
 			for (GameServer_Player Player: PlayerList)
 			{
-				write.print(":");
-				write.print(Long.toString(Player.PlayerID));
-				write.print("&");
-				write.print(Float.toString(Player.fPosX));
-				write.print("&");
-				write.print(Float.toString(Player.fPosY));
-				write.print("&");
-				write.print(Float.toString(Player.fSpeedX));
-				write.print("&");
-				write.print(Float.toString(Player.fSpeedY));
-				write.print("&");
-				write.print(Integer.toString(Player.nFlags));
-				write.print("&");
-				write.print(Integer.toString(Player.nColor));
-				write.print("&");
-				write.print(Player.strName);
+				if (Player.bActive && lID != Player.PlayerID)
+				{
+					write.print(":");
+					write.print(Long.toString(Player.PlayerID));
+					write.print("&");
+					write.print(Float.toString(Player.fPosX));
+					write.print("&");
+					write.print(Float.toString(Player.fPosY));
+					write.print("&");
+					write.print(Float.toString(Player.fSpeedX));
+					write.print("&");
+					write.print(Float.toString(Player.fSpeedY));
+					write.print("&");
+					write.print(Integer.toString(Player.nFlags));
+					write.print("&");
+					write.print(Integer.toString(Player.nColor));
+					write.print("&");
+					write.print(Player.strName);
+				}
 			}
 			write.print(";");
 		}
