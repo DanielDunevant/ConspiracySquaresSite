@@ -38,6 +38,7 @@ public class Servlet_Game_Move extends HttpServlet
 		Float fY = Float.parseFloat(req.getParameter("Self_Y"));
 		Float fDX = Float.parseFloat(req.getParameter("Self_dX"));
 		Float fDY = Float.parseFloat(req.getParameter("Self_dY"));
+		
 		Long lMoveNum = Long.parseLong(req.getParameter("Self_MoveNum"));
 
 		GameServer GetServer = ObjectifyService.ofy().load().type(GameServer.class).id(ServerName).now();

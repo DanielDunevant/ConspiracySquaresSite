@@ -20,9 +20,10 @@ public class GameServer_Player {
 	@Id public Long PlayerID;
 
 	@Index public Boolean bActive = false;
-	public Long LastUpdate = 0L;
+
+	public Long lMoveN = 1L;
+	public Long lChangeN = 1L;
 	
-	public Long lMoveN = 0L;
 	public Float fPosX = 0f;
 	public Float fPosY = 0f;
 	public Float fSpeedX = 0f;
@@ -42,7 +43,9 @@ public class GameServer_Player {
 		
 		nColor = nColorRand;
 
-		lMoveN = 0L;
+		lMoveN = 1L;
+		lChangeN = 1L;
+		
 		fPosX = 0f;
 		fPosY = 0f;
 		fSpeedX = 0f;

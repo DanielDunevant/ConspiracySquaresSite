@@ -28,13 +28,17 @@ public class Servlet_Game_Sync extends HttpServlet
 	{
 		resp.addHeader("Access-Control-Allow-Origin", "*");
 		
-		String ReqPass = req.getParameter("ReqPass");
+		String ReqPass = req.getParameter("P");
 		//TODO: Add asymmetric encryption
 
-		String ServerName = req.getParameter("ServerName");
-		String ServerPass = req.getParameter("ServerPassword");
+		String ServerName = req.getParameter("SN");
+		String ServerPass = req.getParameter("SP");
 		
-		Long lID = Long.parseLong(req.getParameter("Self_ID"));
+		Long lID = Long.parseLong(req.getParameter("ID"));
+		Long lMN = 0L;
+		Long lCN = 0L;
+		boolean bMN = false;
+		boolean bCN = false;
 
 		GameServer GetServer = ObjectifyService.ofy().load().type(GameServer.class).id(ServerName).now();
 		if (GetServer != null && GetServer.ServerPassword.equals(ServerPass))
@@ -46,25 +50,44 @@ public class Servlet_Game_Sync extends HttpServlet
 			{
 				if (Player.bActive && lID != Player.PlayerID)
 				{
-					write.print(":");
-					write.print(Long.toString(Player.PlayerID));
-					write.print("&");
-					write.print(Float.toString(Player.fPosX));
-					write.print("&");
-					write.print(Float.toString(Player.fPosY));
-					write.print("&");
-					write.print(Float.toString(Player.fSpeedX));
-					write.print("&");
-					write.print(Float.toString(Player.fSpeedY));
-					write.print("&");
-					write.print(Integer.toString(Player.nFlags));
-					write.print("&");
-					write.print(Integer.toString(Player.nColor));
-					write.print("&");
-					write.print(Player.strName);
+					bMN = Long.parseLong(req.getParameter("M" + Long.toString(Player.PlayerID))) < Player.lMoveN;
+					bCN = Long.parseLong(req.getParameter("C" + Long.toString(Player.PlayerID))) < Player.lChangeN;
+					
+					if (bMN || bCN)
+					{
+						write.print(":");
+						write.print(Long.toString(Player.PlayerID));
+						write.print("&");
+						if (bMN)
+						{
+							write.print("^");
+							write.print(Float.toString(Player.fPosX));
+							write.print("&");
+							write.print(Float.toString(Player.fPosY));
+							write.print("&");
+							write.print(Float.toString(Player.fSpeedX));
+							write.print("&");
+							write.print(Float.toString(Player.fSpeedY));
+							write.print("&");
+							write.print(Long.toString(Player.lMoveN));
+							write.print("&");
+						}
+						if (bCN)
+						{
+							write.print("#");
+							write.print(Integer.toString(Player.nFlags));
+							write.print("&");
+							write.print(Integer.toString(Player.nColor));
+							write.print("&");
+							write.print(Player.strName);
+							write.print("&");
+							write.print(Long.toString(Player.lChangeN));
+							write.print("&");
+						}
+						write.print(";");
+					}
 				}
 			}
-			write.print(";");
 		}
 	}
 }
