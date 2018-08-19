@@ -14,6 +14,10 @@ import java.util.ArrayList;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
+import java.util.Date;
+import java.util.TimeZone;
+import java.util.Locale;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,11 +32,27 @@ public class Cron_RemoveEmptyServers extends HttpServlet
 	{
 		resp.addHeader("Access-Control-Allow-Origin", "*");
 		
-		List<GameServer> ServerList = ObjectifyService.ofy().load().type(GameServer.class).filter("nPlayers", 0).list();
+		List<GameServer> ServerList = ObjectifyService.ofy().load().type(GameServer.class).list();
 		for (GameServer SVR: ServerList)
 		{
+			Calendar GMT = Calendar.getInstance(TimeZone.getTimeZone("GMT+0"));
+			long lNow = GMT.getTimeInMillis();
+			boolean bServerChanged = false;
+			
 			List<GameServer_Player> PlayerList = ObjectifyService.ofy().load().type(GameServer_Player.class).ancestor(SVR).list();
-			ObjectifyService.ofy().delete().entities(SVR, PlayerList).now();
+			for (GameServer_Player Player: PlayerList)
+			{
+				if (lNow - Player.lLastUpdate > 8000)
+				{
+					bServerChanged = true;
+					SVR.nPlayers--;
+					Player.Reset(false);
+					ObjectifyService.ofy().save().entity(Player).now();
+				}
+			}
+
+			if (SVR.nPlayers == 0) ObjectifyService.ofy().delete().entities(SVR, PlayerList).now();
+			else if (bServerChanged) ObjectifyService.ofy().save().entity(SVR).now();
 		}
 	}
 }

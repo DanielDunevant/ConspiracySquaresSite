@@ -14,6 +14,10 @@ import java.util.List;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
+import java.util.Date;
+import java.util.TimeZone;
+import java.util.Locale;
+import java.util.Calendar;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,46 +49,58 @@ public class Servlet_Game_Sync extends HttpServlet
 		{
 			PrintWriter write = resp.getWriter();
 			
-			List<GameServer_Player> PlayerList = ObjectifyService.ofy().load().type(GameServer_Player.class).ancestor(GetServer).list();
-			for (GameServer_Player Player: PlayerList)
+			GameServer_Player Self = ObjectifyService.ofy().load().type(GameServer_Player.class).parent(GetServer).id(lID).now();
+			if (!Self.bActive)
 			{
-				if (Player.bActive && lID != Player.PlayerID)
+				write.print("ERROR_INACTIVE");
+			}
+			else
+			{
+				Calendar GMT = Calendar.getInstance(TimeZone.getTimeZone("GMT+0"));
+				Self.lLastUpdate = GMT.getTimeInMillis();
+				ObjectifyService.ofy().save().entity(Self).now();
+			
+				List<GameServer_Player> PlayerList = ObjectifyService.ofy().load().type(GameServer_Player.class).ancestor(GetServer).list();
+				for (GameServer_Player Player: PlayerList)
 				{
-					bMN = Long.parseLong(req.getParameter("M" + Long.toString(Player.PlayerID))) < Player.lMoveN;
-					bCN = Long.parseLong(req.getParameter("C" + Long.toString(Player.PlayerID))) < Player.lChangeN;
-					
-					if (bMN || bCN)
+					if (Player.bActive && lID != Player.PlayerID)
 					{
-						write.print(":");
-						write.print(Long.toString(Player.PlayerID));
-						write.print("&");
-						if (bMN)
+						bMN = Long.parseLong(req.getParameter("M" + Long.toString(Player.PlayerID))) < Player.lMoveN;
+						bCN = Long.parseLong(req.getParameter("C" + Long.toString(Player.PlayerID))) < Player.lChangeN;
+						
+						if (bMN || bCN)
 						{
-							write.print("^");
-							write.print(Float.toString(Player.fPosX));
+							write.print(":");
+							write.print(Long.toString(Player.PlayerID));
 							write.print("&");
-							write.print(Float.toString(Player.fPosY));
-							write.print("&");
-							write.print(Float.toString(Player.fSpeedX));
-							write.print("&");
-							write.print(Float.toString(Player.fSpeedY));
-							write.print("&");
-							write.print(Long.toString(Player.lMoveN));
-							write.print("&");
+							if (bMN)
+							{
+								write.print("^");
+								write.print(Float.toString(Player.fPosX));
+								write.print("&");
+								write.print(Float.toString(Player.fPosY));
+								write.print("&");
+								write.print(Float.toString(Player.fSpeedX));
+								write.print("&");
+								write.print(Float.toString(Player.fSpeedY));
+								write.print("&");
+								write.print(Long.toString(Player.lMoveN));
+								write.print("&");
+							}
+							if (bCN)
+							{
+								write.print("#");
+								write.print(Integer.toString(Player.nFlags));
+								write.print("&");
+								write.print(Integer.toString(Player.nColor));
+								write.print("&");
+								write.print(Player.strName);
+								write.print("&");
+								write.print(Long.toString(Player.lChangeN));
+								write.print("&");
+							}
+							write.print(";");
 						}
-						if (bCN)
-						{
-							write.print("#");
-							write.print(Integer.toString(Player.nFlags));
-							write.print("&");
-							write.print(Integer.toString(Player.nColor));
-							write.print("&");
-							write.print(Player.strName);
-							write.print("&");
-							write.print(Long.toString(Player.lChangeN));
-							write.print("&");
-						}
-						write.print(";");
 					}
 				}
 			}
