@@ -50,12 +50,11 @@ public class GameServer {
 	{
 		ServerName = strName;
 		ServerPassword = strPass;
-		
 		Random randColor = new Random(System.currentTimeMillis());
 		ArrayList<GameServer_Player> PlayerList = new ArrayList<GameServer_Player>();
 		for (long lPlayerNum = 1; lPlayerNum < lPlayerMAX + 1; lPlayerNum++)
 		{
-			GameServer_Player newPlayer = new GameServer_Player(ServerName, lPlayerNum);
+			GameServer_Player newPlayer = new GameServer_Player(ServerName, lPlayerNum,playerClass);
 			int nColor = (255 << 24) | (randColor.nextInt(255) << 16) | (randColor.nextInt(255) << 8) | randColor.nextInt(255);
 			newPlayer.Reset(true, nColor);
 			PlayerList.add(newPlayer);
