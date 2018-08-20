@@ -11,6 +11,7 @@ import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashSet;
 import java.util.HashMap;
+import java.util.Random;
 
 import com.googlecode.objectify.ObjectifyService;
 
@@ -23,6 +24,7 @@ public class GameServer_Player {
 
 	public Long lMoveN = 1L;
 	public Long lChangeN = 1L;
+	public Long lLastUpdate = 0L;
 	
 	public Float fPosX = 0f;
 	public Float fPosY = 0f;
@@ -33,7 +35,7 @@ public class GameServer_Player {
 	public Integer nColor = 0;
 	public Integer nFlags = -1;
 	
-	public void Reset(boolean bRoundRestart, int nColorRand)
+	public void Reset(boolean bRoundRestart)
 	{
 		if (!bRoundRestart)
 		{
@@ -41,7 +43,8 @@ public class GameServer_Player {
 			strName = "";
 		}
 		
-		nColor = nColorRand;
+		Random randColor = new Random(System.currentTimeMillis() + (PlayerID * 10));
+		nColor = (255 << 24) | (randColor.nextInt(255) << 16) | (randColor.nextInt(255) << 8) | randColor.nextInt(255);
 
 		lMoveN = 1L;
 		lChangeN = 1L;

@@ -14,7 +14,6 @@ import java.util.List;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Random;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,9 +49,7 @@ public class Servlet_SVR_ServerLeave extends HttpServlet
 			else
 			{
 				GameServer_Player PlayerLeft = ObjectifyService.ofy().load().type(GameServer_Player.class).parent(GetServer).id(lID).now();
-				Random randColor = new Random(System.currentTimeMillis());
-				int nColor = (255 << 24) | (randColor.nextInt(255) << 16) | (randColor.nextInt(255) << 8) | randColor.nextInt(255);
-				PlayerLeft.Reset(false, nColor);
+				PlayerLeft.Reset(false);
 				ObjectifyService.ofy().save().entity(PlayerLeft).now();
 				ObjectifyService.ofy().save().entity(GetServer).now();
 			}
