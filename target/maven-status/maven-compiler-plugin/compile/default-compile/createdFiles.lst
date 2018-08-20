@@ -6,6 +6,7 @@ com\novaytechnologies\conspiracysquares\Servlet_SVR_CreateServer.class
 com\novaytechnologies\conspiracysquares\Servlet_SVR_ListServers.class
 com\novaytechnologies\conspiracysquares\Servlet_SVR_ServerLeave.class
 com\novaytechnologies\conspiracysquares\GameServer.class
+com\novaytechnologies\conspiracysquares\Servlet_RoundStart.class
 com\novaytechnologies\conspiracysquares\Servlet_Game_Sync.class
 com\novaytechnologies\conspiracysquares\Servlet_SVR_ServerJoin.class
 com\novaytechnologies\conspiracysquares\GameServer_Player.class

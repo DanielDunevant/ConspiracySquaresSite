@@ -32,7 +32,6 @@ public class GameServer_Player {
 	
 	public String strName = "";
 	public Integer nColor = 0;
-	//Represents the Player Class
 	public Integer nFlags = -1;
 	
 	public void Reset(boolean bRoundRestart)
@@ -62,8 +61,5 @@ public class GameServer_Player {
 	{
 		Server = Key.create(GameServer.class, strServer);
 		PlayerID = lID;
-	}
-	public SetPlayerClass(Integer playerClass){
-		nFlags = playerClass;
 	}
 }

@@ -52,7 +52,7 @@ public class GameServer {
 		for (long lPlayerNum = 1; lPlayerNum < lPlayerMAX + 1; lPlayerNum++)
 		{
 			GameServer_Player newPlayer = new GameServer_Player(ServerName, lPlayerNum);
-			newPlayer.Reset(true);
+			newPlayer.Reset(false);
 			PlayerList.add(newPlayer);
 		}
 		ObjectifyService.ofy().save().entities(PlayerList).now();

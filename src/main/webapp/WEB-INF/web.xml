@@ -68,6 +68,15 @@
     <servlet-name>Servlet_Game_Move</servlet-name>
     <url-pattern>/Servlet_Game_Move</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Servlet_RoundStart</servlet-name>
+    <servlet-class>com.novaytechnologies.conspiracysquares.Servlet_RoundStart</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet_RoundStart</servlet-name>
+    <url-pattern>/Servlet_RoundStart</url-pattern>
+  </servlet-mapping>
 
   <servlet>
     <servlet-name>Cron_RemoveEmptyServers</servlet-name>
